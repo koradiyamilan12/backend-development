@@ -1,0 +1,25 @@
+const fs = require("fs");
+
+fs.readFile("input.txt", "utf-8", (err, data) => {
+  if (err) {
+    console.log("Error reading file", err);
+    return;
+  }
+  const modifyFileData = data.toLocaleUpperCase();
+
+  fs.writeFile("output.txt", modifyFileData, (err) => {
+    if (err) {
+      console.log("Error wrting file", err);
+      return;
+    }
+    console.log("data written to the new file");
+
+    fs.readFile("output.txt", "utf-8", (err, data) => {
+      if (err) {
+        console.log("Error reading file", err);
+        return;
+      }
+      console.log(data);
+    });
+  });
+});
